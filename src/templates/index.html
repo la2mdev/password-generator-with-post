@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator!</title>
+  </head>
+  <body>
+    <form action="{% url 'generator:password_generator' %}" method="POST">
+      {% csrf_token %}
+      <h3>Password Generator</h3>
+      <hr />
+      {{ form.as_p }}
+      <button type="submit">generate password</button>
+      {% if messages %}
+      <hr />
+
+      {% for message in messages %}
+      <p>{{ message }}</p>
+      {% endfor %}
+
+      {% endif %}
+
+    </form>
+    <script>
+      const length = document.getElementById('id_length');
+      const first_p = document.querySelector('p');
+      const lengthValue = document.createElement('spam');
+      first_p.appendChild(lengthValue);
+
+      document.addEventListener('DOMContentLoaded', () => {
+        lengthValue.innerText = length.value;
+      });
+
+      length.addEventListener('click', () => {
+        lengthValue.innerText = length.value;
+      });
+    </script>
+  </body>
+</html>
